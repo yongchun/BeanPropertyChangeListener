@@ -1,14 +1,19 @@
 package bean;
 
 import annotation.PropertyListener;
+import annother.DiffProperty;
+import annother.OperationType;
 
 /**
  * Created by Shannon,chen on 16/6/12.
  * 一个测试bean
  */
 public class Student {
-    private  String name;
+    @DiffProperty(value = OperationType.NAME)
+    private String name;
+    @DiffProperty(value = OperationType.AGE)
     private int age;
+    @DiffProperty(value = OperationType.GENDER)
     private String gender;
     private String desc;
 
@@ -16,7 +21,7 @@ public class Student {
         return name;
     }
 
-    @PropertyListener(value="name")
+    @PropertyListener(value = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -25,7 +30,7 @@ public class Student {
         return age;
     }
 
-    @PropertyListener(value="age")
+    @PropertyListener(value = "age")
     public void setAge(int age) {
         this.age = age;
     }
@@ -34,7 +39,7 @@ public class Student {
         return gender;
     }
 
-    @PropertyListener(value="gender")
+    @PropertyListener(value = "gender")
     public void setGender(String gender) {
         this.gender = gender;
     }

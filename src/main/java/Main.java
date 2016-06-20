@@ -1,3 +1,5 @@
+import annother.ObjectPropertyDiffer;
+import annother.ObjectPropertyDiffers;
 import bean.Student;
 import support.BeanMethodInterceptor;
 
@@ -12,11 +14,15 @@ public class Main {
             System.out.println(p.getOldValue() + "=======>" + p.getNewValue());
         });
 
-        student = (Student) interceptor.createProxy(Student.class);
-        student.setName("afterName");
-        student.setAge(1500);
-        student.setDesc("afterTest");
-    }
+        Student student2 = (Student) interceptor.createProxy(Student.class);
+        student2.setName("afterName");
+        student2.setAge(1500);
+        student2.setDesc("afterTest");
 
+        ObjectPropertyDiffer differ = ObjectPropertyDiffers.getObjectDiffer(Student.class);
+        differ.diff(student, student2, p -> {
+            System.out.println(p.getOldValue() + "=======>" + p.getNewValue());
+        });
+    }
 }
 
